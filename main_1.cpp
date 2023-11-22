@@ -3,7 +3,6 @@
 // opencv4` (base) nnn@thinkpad-t480s:~/Desktop/opencv$ ./main
 // g++ `pkg-config --cflags opencv4` main.cpp -o main `pkg-config --libs opencv4` 
 
-
 #include <iostream>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -16,8 +15,10 @@ int main() {
     Mat image_ir;
     Mat image_color;
 
-    VideoCapture cap_ir(0);
-    VideoCapture cap_color(2);
+    VideoCapture cap_ir("/dev/video0");
+    //ここをVideoCapture cap_ir(0);としてもOK
+    VideoCapture cap_color("/dev/video2");
+    //ここをVideoCapture cap_color(2);としてもOK
 
     if (!cap_ir.isOpened()) cout << "cannot open camera";
     if (!cap_color.isOpened()) cout << "cannot open camera";
